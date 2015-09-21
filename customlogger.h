@@ -22,7 +22,7 @@ void customLog(int level, const char *message, ...)
     switch(level)
     {
     case INFO:
-        qInfo("%s", buf);
+        //qInfo("%s", buf);
         break;
     case DEBUG:
         qDebug("%s", buf);

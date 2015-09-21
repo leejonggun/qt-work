@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QDebug>
+#include "analogclock.h"
 
 namespace Ui {
 class MainWindow;
@@ -17,7 +18,7 @@ public:
     ~MainWindow();
 
 private slots:
-    void open();
+    void tab();
 
 private:
     Ui::MainWindow *ui;
@@ -28,9 +29,11 @@ private:
     QMenu *fileMenu;
     QMenu *helpMenu;
 
-    QAction *openAct;
+    QAction *createTab;
     QAction *clearAct;
     QAction *exitAct;
+
+    AnalogClock *analogClock;
 };
 
 #endif // MAINWINDOW_H

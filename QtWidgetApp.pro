@@ -12,10 +12,12 @@ TARGET = QtWidgetApp
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        mainwindow.cpp
+SOURCES += main.cpp \
+        mainwindow.cpp \
+        analogclock.cpp
 
 HEADERS  += mainwindow.h \
+    analogclock.h \
     customlogger.h
 
 FORMS    += mainwindow.ui
