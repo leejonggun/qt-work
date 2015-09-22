@@ -18,6 +18,9 @@ protected:
 signals:
 
 public slots:
+
+private:
+    QWidget *parent;
 };
 
 #endif // ANALOGCLOCK_H

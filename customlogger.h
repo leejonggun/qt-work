@@ -1,7 +1,7 @@
 #ifndef CUSTOMLOGGER
 #define CUSTOMLOGGER
 
-#endif // CUSTOMLOGGER
+#include <QDebug>
 
 enum DebugLevel
 {
@@ -12,7 +12,7 @@ enum DebugLevel
     FATAL,
 };
 
-void customLog(int level, const char *message, ...)
+static void customLog(int level, const char *message, ...)
 {
     static char buf[4096];
     va_list a_list;
@@ -41,3 +41,5 @@ void customLog(int level, const char *message, ...)
         break;
     }
 }
+
+#endif // CUSTOMLOGGER

@@ -7,13 +7,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-//    centralWidget = new QWidget(this);
-//    centralWidget->setFixedSize(width(), height());
-//    setCentralWidget(centralWidget);
-
-//    tabWidget->setTabPosition(QTabWidget::North);
-//    tabWidget->setFixedSize(width() - 10, height() - 10);
+    analogClock = 0;
+    tabDialog = 0;
 
     createActions();
     createMenus();
@@ -27,7 +22,6 @@ MainWindow::~MainWindow()
 void MainWindow::createTab()
 {
     customLog(DEBUG, "createTab()");
-//    tabWidget->addTab(new AnalogClock(this), tr("AnalogClock"));
 }
 
 void MainWindow::showDialog()
@@ -39,10 +33,11 @@ void MainWindow::showDialog()
 
 void MainWindow::showMainWidget()
 {
+    customLog(DEBUG, "analogClock = %p", analogClock);
     if (analogClock == 0)
     {
         analogClock = new AnalogClock(this);
-        customLog(DEBUG, "analogClock = %p", analogClock);
+        setCentralWidget(analogClock);
     }
     analogClock->show();
 }
@@ -60,7 +55,7 @@ void MainWindow::createActions()
     createTabAct->setShortcut(QKeySequence::Open);
     connect(createTabAct, SIGNAL(triggered()), this, SLOT(createTab()));
 
-    dialogAct = new QAction(tr("&Show Dialog"), this);
+    dialogAct = new QAction(tr("&Show Sample Dialog"), this);
     dialogAct->setShortcut(tr("Ctrl+D"));
     connect(dialogAct, SIGNAL(triggered()), this, SLOT(showDialog()));
 

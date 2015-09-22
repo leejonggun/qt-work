@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QDebug>
 #include "analogclock.h"
 #include "tabdialog.h"
 
@@ -26,7 +25,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QWidget *centralWidget;
 // Tool Bars (better use ui design tool)
     void createActions();
     void createMenus();

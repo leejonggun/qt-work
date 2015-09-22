@@ -1,7 +1,9 @@
 #include "analogclock.h"
+#include "customlogger.h"
 
 AnalogClock::AnalogClock(QWidget *parent) : QWidget(parent)
 {
+    this->parent = parent;
     QTimer *qtimer = new QTimer(this);
     connect(qtimer, SIGNAL(timeout()), this, SLOT(update()));
     qtimer->start(1000);
@@ -29,7 +31,9 @@ void AnalogClock::paintEvent(QPaintEvent *)
     QColor minuteColor(0, 127, 0, 191);
     QColor secondColor(0, 0, 127, 127);
 
+//    customLog(DEBUG, "width(%d), height(%d)", width(), height());
     int side = qMin(width(), height());
+//    customLog(DEBUG, "parent: width(%d), height(%d)", parent->width(), parent->height());
     QTime time = QTime::currentTime();
 
     QPainter painter(this);

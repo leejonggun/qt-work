@@ -13,7 +13,17 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralWidget"/>
+  <widget class="QWidget" name="centralWidget">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+  </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
@@ -23,19 +33,13 @@
      <height>25</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuHoge">
+   <widget class="QMenu" name="menuDialog">
     <property name="title">
-     <string>hoge</string>
+     <string>Dialog</string>
     </property>
-    <widget class="QMenu" name="menuTest">
-     <property name="title">
-      <string>test</string>
-     </property>
-     <addaction name="actionFuga"/>
-    </widget>
-    <addaction name="menuTest"/>
+    <addaction name="actionShow_sample_dialog"/>
    </widget>
-   <addaction name="menuHoge"/>
+   <addaction name="menuDialog"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -64,6 +68,11 @@
   <action name="actionFuga">
    <property name="text">
     <string>fuga</string>
+   </property>
+  </action>
+  <action name="actionShow_sample_dialog">
+   <property name="text">
+    <string>Show sample dialog</string>
    </property>
   </action>
  </widget>
