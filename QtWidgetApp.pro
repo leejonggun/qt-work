@@ -16,7 +16,8 @@ SOURCES += main.cpp \
         mainwindow.cpp \
         analogclock.cpp \
     tabdialog.cpp \
-    simplewizard.cpp
+    simplewizard.cpp \
+    customdialog.cpp
 
 HEADERS  += mainwindow.h \
     analogclock.h \
