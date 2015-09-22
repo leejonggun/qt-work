@@ -8,9 +8,15 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+//    centralWidget = new QWidget(this);
+//    centralWidget->setFixedSize(width(), height());
+//    setCentralWidget(centralWidget);
+
+//    tabWidget->setTabPosition(QTabWidget::North);
+//    tabWidget->setFixedSize(width() - 10, height() - 10);
+
     createActions();
     createMenus();
-
 }
 
 MainWindow::~MainWindow()
@@ -18,25 +24,53 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::tab()
+void MainWindow::createTab()
 {
-    int a=0, b=1, c=2;
-    customLog(DEBUG, "info test %d, %d, %d", a, b, c);
+    customLog(DEBUG, "createTab()");
+//    tabWidget->addTab(new AnalogClock(this), tr("AnalogClock"));
+}
 
-    if (analogClock != 0)
+void MainWindow::showDialog()
+{
+    customLog(DEBUG, "showDialog()");
+    tabDialog = new TabDialog("test file name", this);
+    tabDialog->show();
+}
+
+void MainWindow::showMainWidget()
+{
+    if (analogClock == 0)
+    {
         analogClock = new AnalogClock(this);
-    setCentralWidget(analogClock);
+        customLog(DEBUG, "analogClock = %p", analogClock);
+    }
+    analogClock->show();
+}
+
+void MainWindow::clear()
+{
+    if (analogClock != 0)
+        analogClock->hide();
+    customLog(DEBUG, "analogClock = %p", analogClock);
 }
 
 void MainWindow::createActions()
 {
-    createTab = new QAction(tr("&Create Tab"), this);
-    createTab->setShortcut(QKeySequence::Open);
-    connect(createTab, SIGNAL(triggered()), this, SLOT(tab()));
+    createTabAct = new QAction(tr("&Create Tab"), this);
+    createTabAct->setShortcut(QKeySequence::Open);
+    connect(createTabAct, SIGNAL(triggered()), this, SLOT(createTab()));
+
+    dialogAct = new QAction(tr("&Show Dialog"), this);
+    dialogAct->setShortcut(tr("Ctrl+D"));
+    connect(dialogAct, SIGNAL(triggered()), this, SLOT(showDialog()));
+
+    showAct = new QAction(tr("&Show Widget"), this);
+    showAct->setShortcut(tr("Ctrl+S"));
+    connect(showAct, SIGNAL(triggered()), this, SLOT(showMainWidget()));
 
     clearAct = new QAction(tr("&Clear"), this);
     clearAct->setShortcut(tr("Ctrl+C"));
-    //connect(clearAct, SIGNAL(triggered()), textViewer, SLOT(clear()));
+    connect(clearAct, SIGNAL(triggered()), this, SLOT(clear()));
 
     exitAct = new QAction(tr("&Exit"), this);
     exitAct->setShortcuts(QKeySequence::Quit);
@@ -46,10 +80,15 @@ void MainWindow::createActions()
 void MainWindow::createMenus()
 {
     fileMenu = new QMenu(tr("&File"), this);
-    fileMenu->addAction(createTab);
+    fileMenu->addAction(createTabAct);
+    fileMenu->addAction(dialogAct);
+    fileMenu->addSeparator();
+    fileMenu->addAction(showAct);
     fileMenu->addAction(clearAct);
     fileMenu->addSeparator();
     fileMenu->addAction(exitAct);
-
     menuBar()->addMenu(fileMenu);
+
+    helpMenu = new QMenu(tr("&Help"), this);
+    menuBar()->addMenu(helpMenu);
 }

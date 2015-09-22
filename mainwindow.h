@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QDebug>
 #include "analogclock.h"
+#include "tabdialog.h"
 
 namespace Ui {
 class MainWindow;
@@ -18,22 +19,30 @@ public:
     ~MainWindow();
 
 private slots:
-    void tab();
+    void createTab();
+    void showDialog();
+    void showMainWidget();
+    void clear();
 
 private:
     Ui::MainWindow *ui;
-
+    QWidget *centralWidget;
+// Tool Bars (better use ui design tool)
     void createActions();
     void createMenus();
 
     QMenu *fileMenu;
     QMenu *helpMenu;
 
-    QAction *createTab;
+    QAction *createTabAct;
+    QAction *dialogAct;
+    QAction *showAct;
     QAction *clearAct;
     QAction *exitAct;
 
+// Widgets
     AnalogClock *analogClock;
+    TabDialog *tabDialog;
 };
 
 #endif // MAINWINDOW_H
