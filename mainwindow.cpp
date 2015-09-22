@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "customlogger.h"
+#include "customdialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -9,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     analogClock = 0;
     tabDialog = 0;
+    customDialog = 0;
 
     createActions();
     createMenus();
@@ -22,13 +24,6 @@ MainWindow::~MainWindow()
 void MainWindow::createTab()
 {
     customLog(DEBUG, "createTab()");
-}
-
-void MainWindow::showDialog()
-{
-    customLog(DEBUG, "showDialog()");
-    tabDialog = new TabDialog("test file name", this);
-    tabDialog->show();
 }
 
 void MainWindow::showMainWidget()
@@ -55,10 +50,6 @@ void MainWindow::createActions()
     createTabAct->setShortcut(QKeySequence::Open);
     connect(createTabAct, SIGNAL(triggered()), this, SLOT(createTab()));
 
-    dialogAct = new QAction(tr("&Show Sample Dialog"), this);
-    dialogAct->setShortcut(tr("Ctrl+D"));
-    connect(dialogAct, SIGNAL(triggered()), this, SLOT(showDialog()));
-
     showAct = new QAction(tr("&Show Widget"), this);
     showAct->setShortcut(tr("Ctrl+S"));
     connect(showAct, SIGNAL(triggered()), this, SLOT(showMainWidget()));
@@ -76,7 +67,6 @@ void MainWindow::createMenus()
 {
     fileMenu = new QMenu(tr("&File"), this);
     fileMenu->addAction(createTabAct);
-    fileMenu->addAction(dialogAct);
     fileMenu->addSeparator();
     fileMenu->addAction(showAct);
     fileMenu->addAction(clearAct);
@@ -86,4 +76,17 @@ void MainWindow::createMenus()
 
     helpMenu = new QMenu(tr("&Help"), this);
     menuBar()->addMenu(helpMenu);
+}
+
+void MainWindow::on_actionShow_sample_dialog_triggered()
+{
+    customLog(DEBUG, "on_actionShow_sample_dialog_triggered()");
+    tabDialog = new TabDialog("test file name", this);
+    tabDialog->show();
+}
+
+void MainWindow::on_actionCreate_Custom_Dialog_triggered()
+{
+    customDialog = new CustomDialog(this);
+    customDialog->show();
 }

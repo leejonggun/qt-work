@@ -38,6 +38,7 @@
      <string>Dialog</string>
     </property>
     <addaction name="actionShow_sample_dialog"/>
+    <addaction name="actionCreate_Custom_Dialog"/>
    </widget>
    <addaction name="menuDialog"/>
   </widget>
@@ -60,19 +61,14 @@
     <string>creater</string>
    </property>
   </action>
-  <action name="actionTest">
-   <property name="text">
-    <string>test</string>
-   </property>
-  </action>
-  <action name="actionFuga">
-   <property name="text">
-    <string>fuga</string>
-   </property>
-  </action>
   <action name="actionShow_sample_dialog">
    <property name="text">
     <string>Show sample dialog</string>
+   </property>
+  </action>
+  <action name="actionCreate_Custom_Dialog">
+   <property name="text">
+    <string>Create Custom Dialog</string>
    </property>
   </action>
  </widget>

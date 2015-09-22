@@ -1,5 +1,4 @@
 #include "analogclock.h"
-#include "customlogger.h"
 
 AnalogClock::AnalogClock(QWidget *parent) : QWidget(parent)
 {

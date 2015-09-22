@@ -15,11 +15,13 @@ TEMPLATE = app
 SOURCES += main.cpp \
         mainwindow.cpp \
         analogclock.cpp \
-    tabdialog.cpp
+    tabdialog.cpp \
+    simplewizard.cpp
 
 HEADERS  += mainwindow.h \
     analogclock.h \
     customlogger.h \
-    tabdialog.h
+    tabdialog.h \
+    customdialog.h
 
 FORMS    += mainwindow.ui
