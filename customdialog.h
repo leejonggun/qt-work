@@ -17,6 +17,4 @@ public slots:
 private:
 
 };
-
-void createSimpleWizard();
 #endif // CUSTOMDIALOG_H

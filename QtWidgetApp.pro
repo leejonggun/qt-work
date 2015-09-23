@@ -16,8 +16,8 @@ SOURCES += main.cpp \
         mainwindow.cpp \
         analogclock.cpp \
     tabdialog.cpp \
-    simplewizard.cpp \
     customdialog.cpp \
+    simplewizard.cpp \
     controllerwindow.cpp \
     previewwindow.cpp
 

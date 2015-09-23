@@ -86,10 +86,10 @@ void MainWindow::on_actionShow_sample_dialog_triggered()
 
 void MainWindow::on_actionCreate_Custom_Dialog_triggered()
 {
-    customDialog = new CustomDialog(this);
-    customDialog->show();
-    customLog(DEBUG, "on_actionCreate_Custom_Dialog_triggered()");
-    SimpleWizard *testWizard = new SimpleWizard();
-    testWizard->buildWizardPages();
-    testWizard->show();
+//    customDialog = new CustomDialog(this);
+//    customDialog->show();
+//    customLog(DEBUG, "on_actionCreate_Custom_Dialog_triggered()");
+//    SimpleWizard *testWizard = new SimpleWizard();
+//    testWizard->buildWizardPages();
+//    testWizard->show();
 }

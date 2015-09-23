@@ -57,11 +57,11 @@ QWizardPage *SimpleWizard::createConclusionPage()
     conclusionPage->setSubTitle("How great! Below is you input the registration page. Have a nice day!");
 
     QLabel *name = new QLabel("Input Name:");
-    customLog(DEBUG, "createConclusionPage: inputName = %s", inputName.toStdString().c_str());
     QLabel *inputNameLabel = new QLabel(inputName);
 
     QLabel *age = new QLabel("Input Age:");
-    customLog(DEBUG, "createConclusionPage: inputAge = %d", inputAge);
+    customLog(DEBUG, "createConclusionPage: inputName = %s, inputAge = %d"
+                        ,inputName.toStdString().c_str(), inputAge);
     QLabel *inputAgeLabel = new QLabel(QString::number(inputAge));
 
     QGridLayout *layout = new QGridLayout();
@@ -76,9 +76,7 @@ QWizardPage *SimpleWizard::createConclusionPage()
 
 void SimpleWizard::on_nameLineEdit_editingFinished()
 {
-    customLog(DEBUG, "nameLineEdit->text() = %s", nameLineEdit->text().toStdString().c_str());
     inputName = nameLineEdit->text();
-    customLog(DEBUG, "inputName = %s, nextId = %d", inputName.toStdString().c_str(), nextId());
     int next = nextId();
     addPage(createConclusionPage());
     removePage(next);
@@ -86,9 +84,7 @@ void SimpleWizard::on_nameLineEdit_editingFinished()
 
 void SimpleWizard::on_ageBox_currentIndexChanged(int index)
 {
-    customLog(DEBUG, "index = %d", index);
     inputAge = index;
-    customLog(DEBUG, "inputAge = %d, nextId = %d", inputAge, nextId());
     int next = nextId();
     addPage(createConclusionPage());
     removePage(next);
@@ -99,7 +95,5 @@ QWizard *SimpleWizard::buildWizardPages()
     addPage(createIntroPage());
     addPage(createRegistrationPage());
     addPage(createConclusionPage());
-
-    customLog(DEBUG, "createSimpleWizard");
     return this;
 }
