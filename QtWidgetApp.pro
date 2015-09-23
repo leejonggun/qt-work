@@ -17,12 +17,17 @@ SOURCES += main.cpp \
         analogclock.cpp \
     tabdialog.cpp \
     simplewizard.cpp \
-    customdialog.cpp
+    customdialog.cpp \
+    controllerwindow.cpp \
+    previewwindow.cpp
 
 HEADERS  += mainwindow.h \
     analogclock.h \
     customlogger.h \
     tabdialog.h \
-    customdialog.h
+    customdialog.h \
+    simplewizard.h \
+    controllerwindow.h \
+    previewwindow.h
 
 FORMS    += mainwindow.ui

@@ -5,6 +5,7 @@
 #include "analogclock.h"
 #include "tabdialog.h"
 #include "customdialog.h"
+#include "simplewizard.h"
 
 namespace Ui {
 class MainWindow;

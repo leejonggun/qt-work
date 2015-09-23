@@ -1,30 +1,15 @@
-#include <QWizard>
-#include <QLabel>
-#include <QLineEdit>
-#include <QComboBox>
-#include <QVBoxLayout>
+#include "simplewizard.h"
+#include "customlogger.h"
 
-class WizardHelper : public QWidget
+SimpleWizard::SimpleWizard(QWidget *parent):QWizard(parent)
 {
-public:
-    explicit WizardHelper()
-    {
-        nameLineEdit = new QLineEdit();
-        ageBox = new QComboBox();
-    }
+    nameLineEdit = new QLineEdit();
+    ageBox = new QComboBox();
+    inputName = "";
+    inputAge = 0;
+}
 
-public:
-    QLineEdit *nameLineEdit;
-    QComboBox *ageBox;
-    QString inputName;
-    int inputAge;
-
-private slots:
-    void on_nameLineEdit_editingFinished() { inputName = nameLineEdit->text(); };
-    void on_ageBox_currentIndexChanged(int index) { inputAge = index; };
-};
-
-QWizardPage *createIntroPage()
+QWizardPage *SimpleWizard::createIntroPage()
 {
     QWizardPage *introPage = new QWizardPage();
     introPage->setTitle("QWizard is one of the QDialog Type.");
@@ -40,7 +25,7 @@ QWizardPage *createIntroPage()
     return introPage;
 }
 
-QWizardPage *createRegistrationPage(WizardHelper *helper)
+QWizardPage *SimpleWizard::createRegistrationPage()
 {
     QWizardPage *registrationPage = new QWizardPage();
     registrationPage->setTitle("Registation page. get input from user.");
@@ -48,15 +33,12 @@ QWizardPage *createRegistrationPage(WizardHelper *helper)
                                   "You can get the result from user to next page.");
 
     QLabel *name = new QLabel("Name:");
-//    QLineEdit *nameLineEdit = new QLineEdit();
-    QLineEdit *nameLineEdit = helper->nameLineEdit;
-//    connect(nameLineEdit, SIGNAL(editingFinished()), helper, SLOT(on_nameLineEdit_editingFinished()));
+    connect(nameLineEdit, SIGNAL(editingFinished()), this, SLOT(on_nameLineEdit_editingFinished()));
 
     QLabel *age = new QLabel("Age:");
-//    QComboBox *ageBox = new QComboBox();
-    QComboBox *ageBox = helper->ageBox;
     for (int i=0; i < 100; i++)
-        ageBox->addItem("%d", i);
+        ageBox->addItem(QString::number(i));
+    connect(ageBox, SIGNAL(currentIndexChanged(int)), this, SLOT(on_ageBox_currentIndexChanged(int)));
 
     QGridLayout *layout = new QGridLayout();
     layout->addWidget(name, 0, 0);
@@ -68,17 +50,19 @@ QWizardPage *createRegistrationPage(WizardHelper *helper)
     return registrationPage;
 }
 
-QWizardPage *createConclusionPage()
+QWizardPage *SimpleWizard::createConclusionPage()
 {
     QWizardPage *conclusionPage = new QWizardPage();
     conclusionPage->setTitle("Conclusion Page");
     conclusionPage->setSubTitle("How great! Below is you input the registration page. Have a nice day!");
 
     QLabel *name = new QLabel("Input Name:");
-    QLabel *inputNameLabel = new QLabel("Input Name should be printed");
+    customLog(DEBUG, "createConclusionPage: inputName = %s", inputName.toStdString().c_str());
+    QLabel *inputNameLabel = new QLabel(inputName);
 
     QLabel *age = new QLabel("Input Age:");
-    QLabel *inputAgeLabel = new QLabel("Input Age should be printed");
+    customLog(DEBUG, "createConclusionPage: inputAge = %d", inputAge);
+    QLabel *inputAgeLabel = new QLabel(QString::number(inputAge));
 
     QGridLayout *layout = new QGridLayout();
     layout->addWidget(name, 0, 0);
@@ -90,11 +74,32 @@ QWizardPage *createConclusionPage()
     return conclusionPage;
 }
 
-void createSimpleWizard()
+void SimpleWizard::on_nameLineEdit_editingFinished()
 {
-    QWizard trivialWizard;
-    trivialWizard.addPage(createIntroPage());
-    trivialWizard.addPage(createRegistrationPage(new WizardHelper()));
-    trivialWizard.addPage(createConclusionPage());
+    customLog(DEBUG, "nameLineEdit->text() = %s", nameLineEdit->text().toStdString().c_str());
+    inputName = nameLineEdit->text();
+    customLog(DEBUG, "inputName = %s, nextId = %d", inputName.toStdString().c_str(), nextId());
+    int next = nextId();
+    addPage(createConclusionPage());
+    removePage(next);
 }
 
+void SimpleWizard::on_ageBox_currentIndexChanged(int index)
+{
+    customLog(DEBUG, "index = %d", index);
+    inputAge = index;
+    customLog(DEBUG, "inputAge = %d, nextId = %d", inputAge, nextId());
+    int next = nextId();
+    addPage(createConclusionPage());
+    removePage(next);
+}
+
+QWizard *SimpleWizard::buildWizardPages()
+{
+    addPage(createIntroPage());
+    addPage(createRegistrationPage());
+    addPage(createConclusionPage());
+
+    customLog(DEBUG, "createSimpleWizard");
+    return this;
+}
