@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     analogClock = 0;
     tabDialog = 0;
     customDialog = 0;
+    controller = 0;
 
     createActions();
     createMenus();
@@ -79,17 +80,26 @@ void MainWindow::createMenus()
 
 void MainWindow::on_actionShow_sample_dialog_triggered()
 {
-    customLog(DEBUG, "on_actionShow_sample_dialog_triggered()");
     tabDialog = new TabDialog("test file name", this);
     tabDialog->show();
 }
 
 void MainWindow::on_actionCreate_Custom_Dialog_triggered()
 {
-//    customDialog = new CustomDialog(this);
-//    customDialog->show();
-//    customLog(DEBUG, "on_actionCreate_Custom_Dialog_triggered()");
-//    SimpleWizard *testWizard = new SimpleWizard();
-//    testWizard->buildWizardPages();
-//    testWizard->show();
+    customDialog = new CustomDialog(this);
+    customDialog->show();
+}
+
+void MainWindow::on_actionCreate_Wizard_Page_triggered()
+{
+    SimpleWizard *testWizard = new SimpleWizard();
+    testWizard->buildWizardPages();
+    testWizard->show();
+}
+
+void MainWindow::on_actionCreate_Controller_triggered()
+{
+    customLog(DEBUG, "on_actionCreate_Controller_triggered()");
+    controller = new ControllerWindow();
+    controller->show();
 }

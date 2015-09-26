@@ -19,7 +19,7 @@ SOURCES += main.cpp \
     customdialog.cpp \
     simplewizard.cpp \
     controllerwindow.cpp \
-    previewwindow.cpp
+    helloGLwindow.cpp
 
 HEADERS  += mainwindow.h \
     analogclock.h \
@@ -28,6 +28,6 @@ HEADERS  += mainwindow.h \
     customdialog.h \
     simplewizard.h \
     controllerwindow.h \
-    previewwindow.h
+    helloGLwindow.h
 
 FORMS    += mainwindow.ui

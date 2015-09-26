@@ -2,16 +2,21 @@
 #define PREVIEWWINDOW_H
 
 #include <QWidget>
+#include <QPushButton>
+#include <QVBoxLayout>
 
-class PreviewWindow : public QWidget
+class HelloGLWindow : public QWidget
 {
     Q_OBJECT
 public:
-    explicit PreviewWindow(QWidget *parent = 0);
+    explicit HelloGLWindow(QWidget *parent = 0);
 
 signals:
 
 public slots:
+
+public:
+
 };
 
 #endif // PREVIEWWINDOW_H

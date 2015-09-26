@@ -30,7 +30,7 @@
      <x>0</x>
      <y>0</y>
      <width>400</width>
-     <height>25</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuDialog">
@@ -38,9 +38,17 @@
      <string>Dialog</string>
     </property>
     <addaction name="actionShow_sample_dialog"/>
+    <addaction name="actionCreate_Wizard_Page"/>
     <addaction name="actionCreate_Custom_Dialog"/>
    </widget>
+   <widget class="QMenu" name="menuOpenGL">
+    <property name="title">
+     <string>OpenGL</string>
+    </property>
+    <addaction name="actionCreate_Controller"/>
+   </widget>
    <addaction name="menuDialog"/>
+   <addaction name="menuOpenGL"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -69,6 +77,16 @@
   <action name="actionCreate_Custom_Dialog">
    <property name="text">
     <string>Create Custom Dialog</string>
+   </property>
+  </action>
+  <action name="actionCreate_Wizard_Page">
+   <property name="text">
+    <string>Create Wizard Page</string>
+   </property>
+  </action>
+  <action name="actionCreate_Controller">
+   <property name="text">
+    <string>Create Controller</string>
    </property>
   </action>
  </widget>

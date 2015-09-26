@@ -6,6 +6,7 @@
 #include "tabdialog.h"
 #include "customdialog.h"
 #include "simplewizard.h"
+#include "controllerwindow.h"
 
 namespace Ui {
 class MainWindow;
@@ -28,6 +29,10 @@ private slots:
 
     void on_actionCreate_Custom_Dialog_triggered();
 
+    void on_actionCreate_Wizard_Page_triggered();
+
+    void on_actionCreate_Controller_triggered();
+
 private:
     Ui::MainWindow *ui;
 // Tool Bars (better use ui design tool)
@@ -47,6 +52,7 @@ private:
     AnalogClock *analogClock;
     TabDialog *tabDialog;
     CustomDialog *customDialog;
+    ControllerWindow *controller;
 };
 
 #endif // MAINWINDOW_H

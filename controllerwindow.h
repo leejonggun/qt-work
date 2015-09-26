@@ -3,24 +3,38 @@
 
 #include <QWidget>
 #include <QPushButton>
-#include "previewwindow.h"
+#include <QHBoxLayout>
+#include "simplewizard.h"
+#include "helloGLwindow.h"
 
 class ControllerWindow : public QWidget
 {
     Q_OBJECT
 public:
     explicit ControllerWindow(QWidget *parent = 0);
+    ~ControllerWindow();
 
 signals:
 
-public slots:
-    void updatePreview();
+private slots:
+    void on_simpleWizardButton_clicked();
+    void on_helloGLButton_clicked();
+    void on_lineButton_clicked();
+    void on_rectButton_clicked();
+    void on_clearButton_clicked();
+    void on_closeHelloGLButton_clicked();
+private:
+    QVBoxLayout *mainLayout;
+    QWidget *helloGLLayoutHolder;
+
+    QPushButton *quitButton;
+    QPushButton *simpleWizardButton;
+    QPushButton *helloGLButton;
+
+    HelloGLWindow *helloGL;
 
 private:
-//    QPushButton *quitButton;
-//    QPushButton *simpleWizardButton;
-
-//    PreviewWindow *previewWindow;
+    QVBoxLayout *createDefaultLayout();
 };
 
 #endif // CONTROLLERWINDOW_H
