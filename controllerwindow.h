@@ -31,7 +31,7 @@ private:
     QPushButton *simpleWizardButton;
     QPushButton *helloGLButton;
 
-    HelloGLWindow *helloGL;
+    HelloGLWindow *helloGLWindow;
 
 private:
     QVBoxLayout *createDefaultLayout();

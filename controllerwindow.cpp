@@ -4,7 +4,7 @@ ControllerWindow::ControllerWindow(QWidget *parent) : QWidget(parent)
 {
     mainLayout = createDefaultLayout();
     helloGLLayoutHolder = 0;
-    helloGL = 0;
+    helloGLWindow = 0;
 }
 
 ControllerWindow::~ControllerWindow()
@@ -45,8 +45,8 @@ void ControllerWindow::on_simpleWizardButton_clicked()
 
 void ControllerWindow::on_helloGLButton_clicked()
 {
-    helloGL = new HelloGLWindow(this);
-    helloGL->show();
+    helloGLWindow = new HelloGLWindow(this);
+    helloGLWindow->show();
 
     QVBoxLayout *helloGLLayout = new QVBoxLayout();
     QPushButton *lineButton = new QPushButton(tr("&draw line"));
@@ -85,5 +85,5 @@ void ControllerWindow::on_closeHelloGLButton_clicked()
 {
     delete helloGLLayoutHolder;
     helloGLButton->show();
-    helloGL->close();
+    helloGLWindow->close();
 }

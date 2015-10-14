@@ -1,17 +1,35 @@
 #include "helloGLwindow.h"
+#include <QLabel>
 
-HelloGLWindow::HelloGLWindow(QWidget *parent) : QWidget(parent)
+HelloGLWindow::HelloGLWindow(QWidget *parent)
+    : QWidget(parent),
+      helloGL(0),
+      sampleGL(0)
 {
+    helloGL = new helloGLWidget(this);
+    sampleGL = new GLWidget(this);
+
+    QPushButton *closeButton = new QPushButton(tr("&Close"));
+    connect(closeButton, SIGNAL(clicked()), this, SLOT(close()));
+
+    QWidget *container = new QWidget();
+    QHBoxLayout *hlayout = new QHBoxLayout();
+    QVBoxLayout *vlayout = new QVBoxLayout();
+    QVBoxLayout *helloGLlayout = new QVBoxLayout();
+    QVBoxLayout *sampleGLlayout = new QVBoxLayout();
+    helloGLlayout->addWidget(new QLabel(tr("This is helloGL written by me")));
+    helloGLlayout->addWidget(helloGL);
+    sampleGLlayout->addWidget(new QLabel(tr("This is openGL2 sample provided by Qt")));
+    sampleGLlayout->addWidget(sampleGL);
+
+    hlayout->addLayout(helloGLlayout);
+    hlayout->addLayout(sampleGLlayout);
+    vlayout->addLayout(hlayout);
+    vlayout->addWidget(closeButton);
+    container->setLayout(vlayout);
+
     setWindowFlags(Qt::Window);
-    QPushButton *quitButton = new QPushButton(tr("&Close"));
-    connect(quitButton, SIGNAL(clicked()), this, SLOT(close()));
-
-    QPushButton *openButton = new QPushButton(tr("&Open"));
-    connect(openButton, SIGNAL(clicked()), this, SLOT(close()));
-
     QVBoxLayout *mainLayout = new QVBoxLayout();
-    mainLayout->addWidget(quitButton);
-    mainLayout->addWidget(openButton);
+    mainLayout->addWidget(container);
     setLayout(mainLayout);
 }
-
